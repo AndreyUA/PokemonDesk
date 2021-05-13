@@ -1,7 +1,7 @@
-import { createElement } from "react";
-import ReactDOM from "react-dom";
+import { createElement } from 'react';
+import ReactDOM from 'react-dom';
 
-import App from "./App.tsx";
-import "./index.css";
+import App from './App.tsx';
+import './index.css';
 
-ReactDOM.render(createElement(App), document.getElementById("root"));
+ReactDOM.render(createElement(App), document.getElementById('root'));
