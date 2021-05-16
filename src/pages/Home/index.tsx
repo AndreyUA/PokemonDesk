@@ -5,6 +5,7 @@ import s from './Home.module.scss';
 import Header from '../../components/Header/index.tsx';
 import Layout from '../../components/Layout/index.tsx';
 import Button from '../../components/Button/index.tsx';
+import Parallax from '../../components/Parallax/index.tsx';
 
 const HomePage = () => {
   return (
@@ -19,7 +20,9 @@ const HomePage = () => {
           {/* eslint-disable-next-line no-console */}
           <Button onClick={() => console.log('Click!')}>See pokemons</Button>
         </div>
-        <div className={s.contentParallax}>We&apos;ll see Parallax here soon...</div>
+        <div className={s.contentParallax}>
+          <Parallax />
+        </div>
       </Layout>
     </div>
   );
