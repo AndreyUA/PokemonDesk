@@ -6,6 +6,7 @@ import Header from '../../components/Header/index.tsx';
 import Layout from '../../components/Layout/index.tsx';
 import Button from '../../components/Button/index.tsx';
 import Parallax from '../../components/Parallax/index.tsx';
+import Heading from '../../components/Heading/index.tsx';
 
 const HomePage = () => {
   return (
@@ -13,10 +14,11 @@ const HomePage = () => {
       <Header />
       <Layout className={s.contentWrap}>
         <div className={s.contentText}>
-          <h1>
+          <Heading size="72px">
             <b>Find</b> all your favorite <b>Pokemon</b>
-          </h1>
-          <p>You can know the type of Pokemon, its strengths, disadvantages and abilities</p>
+          </Heading>
+          <Heading size="36px">You can know the type of Pokemon, its strengths, disadvantages and abilities</Heading>
+
           {/* eslint-disable-next-line no-console */}
           <Button onClick={() => console.log('Click!')}>See pokemons</Button>
         </div>
