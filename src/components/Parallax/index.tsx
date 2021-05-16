@@ -14,11 +14,6 @@ const Parallax = () => {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      // eslint-disable-next-line no-console
-      console.log('!!!! event ', e.screenX);
-      // eslint-disable-next-line no-console
-      console.log('!!!! event ', e.screenY);
-
       setScreenX(e.screenX);
       setScreenY(e.screenY);
     };
