@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Andrey\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add -D @svgr-webpack
+  C:\Program Files\nodejs\node.exe C:\Users\Andrey\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add classnames
 
 PATH: 
   C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Andrey\bin;C:\Python39\Scripts;C:\Python39;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\ProgramData\chocolatey\bin;%NVM_HOME%;%NVM_SYMLINK%;C:\Program Files\Git\cmd;C:\Program Files\Git LFS;C:\Users\Andrey\.windows-build-tools\python27;C:\Users\Andrey\AppData\Local\Microsoft\WindowsApps;C:\Users\Andrey\AppData\Roaming\npm;C:\Users\Andrey\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\Andrey\AppData\Local\Programs\Microsoft VS Code\bin
@@ -14,17 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@svgr-webpack: Request "https://registry.yarnpkg.com/@svgr-webpack" returned a 405
-      at Request.params.callback [as _callback] (C:\Users\Andrey\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66997:18)
-      at Request.self.callback (C:\Users\Andrey\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140662:22)
-      at Request.emit (events.js:315:20)
-      at Request.<anonymous> (C:\Users\Andrey\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141634:10)
-      at Request.emit (events.js:315:20)
-      at IncomingMessage.<anonymous> (C:\Users\Andrey\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141556:12)
-      at Object.onceWrapper (events.js:421:28)
-      at IncomingMessage.emit (events.js:327:22)
-      at endReadableNT (internal/streams/readable.js:1327:12)
-      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+  Error: EPERM: operation not permitted, unlink 'C:\Users\Andrey\Desktop\Works\PokemonDesk\node_modules\.bin\webpack-dev-server'
 
 npm manifest: 
   {
@@ -45,6 +35,7 @@ npm manifest:
       "react-dom": "^17.0.2"
     },
     "devDependencies": {
+      "@svgr/webpack": "^5.5.0",
       "@types/classnames": "^2.3.1",
       "@types/react": "^17.0.5",
       "@types/react-dom": "^17.0.4",
@@ -74,6 +65,7 @@ npm manifest:
       "ts-loader": "8",
       "typescript": "4.2.4",
       "typescript-plugin-css-modules": "^3.2.0",
+      "url-loader": "^4.1.1",
       "webpack": "4.44.2",
       "webpack-cli": "3.3.12",
       "webpack-dev-server": "3.11.2"
