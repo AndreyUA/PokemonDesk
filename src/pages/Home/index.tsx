@@ -14,11 +14,10 @@ const HomePage = () => {
       <Header />
       <Layout className={s.contentWrap}>
         <div className={s.contentText}>
-          <Heading size="72px">
+          <Heading type="h1">
             <b>Find</b> all your favorite <b>Pokemon</b>
           </Heading>
-          <Heading size="36px">You can know the type of Pokemon, its strengths, disadvantages and abilities</Heading>
-
+          <Heading type="h3">You can know the type of Pokemon, its strengths, disadvantages and abilities</Heading>
           {/* eslint-disable-next-line no-console */}
           <Button onClick={() => console.log('Click!')}>See pokemons</Button>
         </div>
