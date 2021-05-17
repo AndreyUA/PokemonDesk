@@ -1,11 +1,11 @@
-import React from 'react';
+import { useRoutes } from 'hookrouter';
 
-// import s from './App.module.scss';
-
-import HomePage from './pages/Home/index.tsx';
+import routes from './routes.tsx';
 
 const App = () => {
-  return <HomePage />;
+  const match = useRoutes(routes);
+
+  return match;
 };
 
 export default App;

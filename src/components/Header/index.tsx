@@ -1,4 +1,5 @@
 import React from 'react';
+import { A } from 'hookrouter';
 
 import s from './Header.module.scss';
 
@@ -14,12 +15,12 @@ const MENU: Array<IMenu> = [
   {
     id: 1,
     value: 'Home',
-    link: '#',
+    link: '/',
   },
   {
     id: 2,
     value: 'Pokédex',
-    link: '#',
+    link: '/pokedex',
   },
   {
     id: 3,
@@ -40,12 +41,11 @@ const Header = () => {
         <div className={s.pokemonLogo}>
           <PokemonLogo />
         </div>
-
         <div className={s.menuWrap}>
           {MENU.map(({ value, link, id }) => (
-            <a key={id} className={s.menuLink} href={link}>
+            <A key={id} className={s.menuLink} href={link}>
               {value}
-            </a>
+            </A>
           ))}
         </div>
       </div>
