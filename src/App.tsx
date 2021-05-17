@@ -1,6 +1,6 @@
-import routes from './routes.tsx';
+import { useRoutes } from 'hookrouter';
 
-const { useRoutes } = require('hookrouter');
+import routes from './routes.tsx';
 
 const App = () => {
   const match = useRoutes(routes);
