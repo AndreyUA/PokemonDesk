@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import Header from '../../components/Header/index.tsx';
 
-const Empty = () => {
+interface IProps {
+  title?: string;
+}
+
+const Empty: FC<IProps> = ({ title }) => {
   return (
     <div>
       <Header />
-      EMPTY!!!
+      EMPTY!!! {title}
     </div>
   );
 };
