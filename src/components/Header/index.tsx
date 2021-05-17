@@ -1,9 +1,10 @@
 import React from 'react';
-import { A } from 'hookrouter';
 
 import s from './Header.module.scss';
 
 import { ReactComponent as PokemonLogo } from './assets/Logo.svg';
+
+const { A } = require('hookrouter');
 
 interface IMenu {
   id: number;
