@@ -1,33 +1,42 @@
+/* eslint-disable no-shadow */
 import React from 'react';
 
 import Home from './pages/Home/index.tsx';
+import Pokedex from './pages/Pokedex/index.tsx';
 import Empty from './pages/Empty/index.tsx';
 
 interface IGeneralMenu {
   title: string;
-  link: string;
+  link: LinkEnum;
   component: () => JSX.Element;
+}
+
+export enum LinkEnum {
+  HOME = '/',
+  POKEDEX = '/pokedex',
+  LEGENDARIES = '/legendaries',
+  DOCUMENTATION = '/documentation',
 }
 
 export const GENERAL_MENU: Array<IGeneralMenu> = [
   {
     title: 'Home',
-    link: '/',
+    link: LinkEnum.HOME,
     component: () => <Home />,
   },
   {
     title: 'Pokédex',
-    link: '/pokedex',
-    component: () => <Empty title="Pokedex" />,
+    link: LinkEnum.POKEDEX,
+    component: () => <Pokedex />,
   },
   {
     title: 'Legendaries',
-    link: '/legendaries',
+    link: LinkEnum.LEGENDARIES,
     component: () => <Empty title="legendaries" />,
   },
   {
     title: 'Documentation',
-    link: '/documentation',
+    link: LinkEnum.DOCUMENTATION,
     component: () => <Empty title="documentation" />,
   },
 ];
