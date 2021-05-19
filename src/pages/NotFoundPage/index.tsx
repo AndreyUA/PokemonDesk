@@ -8,6 +8,8 @@ import Button from '../../components/Button/index.tsx';
 
 import TeamRocket from './assets/Team_Rocket_trio_OS 1.png';
 
+import { LinkEnum } from '../../routes.tsx';
+
 const NotFoundPage = () => (
   <div className={s.root}>
     <div className={s.wrap}>
@@ -17,7 +19,7 @@ const NotFoundPage = () => (
         <div className={s.subTitle}>
           <span>The rocket team</span> has won this time.
         </div>
-        <Button yellowColor onClick={() => navigate('/')}>
+        <Button yellowColor onClick={() => navigate(LinkEnum.HOME)}>
           <span>Return</span>
         </Button>
       </div>
