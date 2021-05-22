@@ -5,7 +5,7 @@ import s from './Pokedex.module.scss';
 
 import PokemonCard from '../../components/PokemonCard/index.tsx';
 import Heading from '../../components/Heading/index.tsx';
-import config from '../../config/index';
+import req from '../../utils/request';
 
 const usePokemons = () => {
   const [data, setData] = useState<any>([]);
@@ -14,12 +14,9 @@ const usePokemons = () => {
 
   useEffect(() => {
     const getPokemons = async () => {
-      const url = `${config.client.server.protocol}://${config.client.server.host}${config.client.endpoint.getPokemons.uri.pathname}`;
       try {
-        const response = await fetch(url);
-        const dataResponse = await response.json();
-
-        setData(dataResponse);
+        const response = await req('getPokemons');
+        setData(response);
       } catch (error) {
         setIsError(true);
       } finally {
@@ -46,8 +43,8 @@ const Pokedex = () => {
   return (
     <div className={s.root}>
       <div className={s.wrapper}>
-        <Heading type="h1">
-          {data.totalPokemons} <b>Pokemons</b> for you to choose your favorite
+        <Heading type="h3">
+          {data.total} <b>Pokemons</b> for you to choose your favorite
         </Heading>
         <ul className={s.pokemonCards}>
           {data.pokemons.map((pokemon: any) => {
