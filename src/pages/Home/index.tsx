@@ -3,7 +3,6 @@ import { navigate } from 'hookrouter';
 
 import s from './Home.module.scss';
 
-import Header from '../../components/Header/index.tsx';
 import Layout from '../../components/Layout/index.tsx';
 import Button from '../../components/Button/index.tsx';
 import Parallax from '../../components/Parallax/index.tsx';
@@ -13,7 +12,6 @@ import { LinkEnum } from '../../routes.tsx';
 
 const HomePage = () => (
   <div className={s.root}>
-    <Header />
     <Layout className={s.contentWrap}>
       <div className={s.contentText}>
         <Heading type="h1">

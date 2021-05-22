@@ -3,7 +3,6 @@ import React from 'react';
 
 import s from './Pokedex.module.scss';
 
-import Header from '../../components/Header/index.tsx';
 import PokemonCard from '../../components/PokemonCard/index.tsx';
 
 import pokemons from './mockData';
@@ -11,7 +10,6 @@ import pokemons from './mockData';
 const Pokedex = () => {
   return (
     <div className={s.root}>
-      <Header />
       <div className={s.wrapper}>
         <ul className={s.pokemonCards}>
           {pokemons.map((pokemon) => {
