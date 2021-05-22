@@ -5,6 +5,7 @@ import s from './Pokedex.module.scss';
 
 import PokemonCard from '../../components/PokemonCard/index.tsx';
 import Heading from '../../components/Heading/index.tsx';
+import config from '../../config/index';
 
 const usePokemons = () => {
   const [data, setData] = useState<any>([]);
@@ -13,8 +14,9 @@ const usePokemons = () => {
 
   useEffect(() => {
     const getPokemons = async () => {
+      const url = `${config.client.server.protocol}://${config.client.server.host}${config.client.endpoint.getPokemons.uri.pathname}`;
       try {
-        const response = await fetch('http://zar.hosthot.ru/api/v1/pokemons');
+        const response = await fetch(url);
         const dataResponse = await response.json();
 
         setData(dataResponse);
