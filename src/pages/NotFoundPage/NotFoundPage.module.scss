@@ -1,0 +1,49 @@
+@import '../../variables';
+
+.root {
+  min-height: 100vh;
+  background: $danger;
+}
+
+.wrap {
+  position: relative;
+  min-height: 100vh;
+}
+
+.text {
+  position: absolute;
+  left: 50%;
+  top: 37%;
+  transform: translate(-50%, -50%);
+
+  font-weight: bold;
+  font-size: 700px;
+  line-height: 818px;
+  align-items: center;
+  letter-spacing: 4px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.layer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.subTitle {
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: bold;
+  color: $dark;
+  margin-bottom: 60px;
+
+  span {
+    color: $white;
+  }
+}
