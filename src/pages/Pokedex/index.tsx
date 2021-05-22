@@ -13,7 +13,7 @@ const Pokedex = () => {
     <div className={s.root}>
       <Header />
       <div className={s.wrapper}>
-        <div className={s.pokemonCards}>
+        <ul className={s.pokemonCards}>
           {pokemons.map((pokemon) => {
             const { id, name_clean, stats, types, img } = pokemon;
             return (
@@ -27,7 +27,7 @@ const Pokedex = () => {
               />
             );
           })}
-        </div>
+        </ul>
       </div>
     </div>
   );

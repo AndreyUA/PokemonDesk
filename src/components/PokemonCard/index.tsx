@@ -13,7 +13,7 @@ interface IProps {
 
 const PokemonCard: FC<IProps> = ({ name, attack, defense, types, img }) => {
   return (
-    <div className={s.root}>
+    <li className={s.root}>
       <div className={s.infoWrap}>
         <Heading type="h4" className={s.titleName}>
           {`${name[0].toUpperCase()}${name.slice(1)}`}
@@ -39,7 +39,7 @@ const PokemonCard: FC<IProps> = ({ name, attack, defense, types, img }) => {
       <div className={s.pictureWrap}>
         <img src={img} alt="Charmander" />
       </div>
-    </div>
+    </li>
   );
 };
 
