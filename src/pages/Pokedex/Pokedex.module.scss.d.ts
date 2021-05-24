@@ -2,6 +2,7 @@
 // Please do not change this file!
 interface CssExports {
   pokemonCards: string;
+  pokemonInput: string;
   root: string;
   wrapper: string;
 }

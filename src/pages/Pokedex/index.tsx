@@ -5,37 +5,35 @@ import s from './Pokedex.module.scss';
 
 import PokemonCard from '../../components/PokemonCard/index.tsx';
 import Heading from '../../components/Heading/index.tsx';
-import req from '../../utils/request';
+import useDebounce from '../../hook/useDebounce';
+import usePokemons from '../../hook/usePokemons';
 
-const usePokemons = () => {
-  const [data, setData] = useState<any>([]);
-  const [isLoading, setIsloading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
-
-  useEffect(() => {
-    const getPokemons = async () => {
-      try {
-        const response = await req('getPokemons');
-        setData(response);
-      } catch (error) {
-        setIsError(true);
-      } finally {
-        setIsloading(false);
-      }
-    };
-
-    getPokemons();
-  }, []);
-
-  return {
-    isLoading,
-    isError,
-    data,
-  };
-};
+interface IQuery {
+  limit: number;
+  name?: string;
+}
 
 const Pokedex = () => {
-  const { isLoading, isError, data } = usePokemons();
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [query, setQuery] = useState<IQuery>({
+    limit: 12,
+  });
+
+  const debouncedValue = useDebounce(searchValue, 1000);
+
+  const { isLoading, isError, data } = usePokemons('getPokemons', query, [searchValue]);
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log('debouncedValue =>', debouncedValue);
+  }, [debouncedValue]);
+
+  const handleSearchChange = (value: string) => {
+    setSearchValue(value);
+    setQuery((state: IQuery) => ({
+      ...state,
+      name: value,
+    }));
+  };
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Something wrong...</div>;
@@ -46,9 +44,18 @@ const Pokedex = () => {
         <Heading type="h3">
           {data.total} <b>Pokemons</b> for you to choose your favorite
         </Heading>
+        <input
+          className={s.pokemonInput}
+          placeholder="Choose pokemon"
+          type="text"
+          value={searchValue}
+          onChange={(e) => handleSearchChange(e.target.value)}
+        />
         <ul className={s.pokemonCards}>
-          {data.pokemons.map((pokemon: any) => {
+          {data.pokemons.map((pokemon: any, index: number) => {
             const { id, name_clean, stats, types, img } = pokemon;
+            if (index > 8) return null;
+
             return (
               <PokemonCard
                 key={id}
