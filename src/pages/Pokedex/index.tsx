@@ -5,10 +5,11 @@ import s from './Pokedex.module.scss';
 
 import PokemonCard from '../../components/PokemonCard/index.tsx';
 import Heading from '../../components/Heading/index.tsx';
+import Loader from '../../components/Loader/index.tsx';
+
 import useDebounce from '../../hook/useDebounce';
 import useData from '../../hook/useData';
 import { IPokemons, PokemonRequest } from '../../interface/pokemons';
-import { ReactComponent as PokeballSpinner } from './assets/PokeballSpinner.svg';
 
 interface IQuery {
   name?: string;
@@ -47,7 +48,7 @@ const Pokedex = () => {
         />
         <ul className={s.pokemonCards}>
           {isLoading ? (
-            <PokeballSpinner className={s.pokemonSpinner} />
+            <Loader />
           ) : (
             data &&
             data.pokemons.map((pokemon: PokemonRequest) => {

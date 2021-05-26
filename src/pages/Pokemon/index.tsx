@@ -4,6 +4,7 @@ import s from './Pokemon.module.scss';
 
 import { PokemonRequest } from '../../interface/pokemons';
 import Heading from '../../components/Heading/index.tsx';
+import Loader from '../../components/Loader/index.tsx';
 
 export interface IProps {
   id: string | number;
@@ -54,13 +55,100 @@ const Pokemon: FC<IProps> = ({ id }) => {
             </div>
           </div>
           <div className={s.pokemonStats}>
-            <Heading className={s.pokemonName} type="h3">
-              {`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`}
-            </Heading>
+            <div className={s.pokemonInfo}>
+              <Heading className={s.pokemonName} type="h3">
+                {`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`}
+              </Heading>
+              <div className={s.pokemonGenAndCircle}>
+                <Heading className={s.pokemonGeneration} type="h4">
+                  Generation 1
+                </Heading>
+                <div className={s.pokemonCircle}>
+                  <Heading type="p" className={s.pokemonState}>
+                    578
+                  </Heading>
+                </div>
+              </div>
+            </div>
+            <div className={s.pokemonAbilitiesText}>
+              <Heading type="p" className={s.pokemonState}>
+                Abilities
+              </Heading>
+              <Heading type="p" className={s.pokemonStateText}>
+                Overgrow - Chlorophyll
+              </Heading>
+            </div>
+            <div className={s.pokemonHealthAndExp}>
+              <div className={s.pokemonHealth}>
+                <Heading type="p" className={s.pokemonState}>
+                  Healthy Points
+                </Heading>
+
+                <Heading type="p" className={s.pokemonNums}>
+                  1 000 000
+                </Heading>
+                <div className={s.pokemonProgressBar}>
+                  <div
+                    className={s.pokemonProgressBarReady}
+                    style={{
+                      width: '80%',
+                      background: 'linear-gradient(270deg, #64D368 0.15%, #64D368 70.88%)',
+                    }}
+                  />
+                </div>
+              </div>
+              <div className={s.pokemonExp}>
+                <Heading type="p" className={s.pokemonState}>
+                  Experience
+                </Heading>
+
+                <Heading type="p" className={s.pokemonNums}>
+                  1 000 000
+                </Heading>
+                <div className={s.pokemonProgressBar}>
+                  <div
+                    className={s.pokemonProgressBarReady}
+                    style={{
+                      width: '96%',
+                      background: 'linear-gradient(180deg, #F5DB13 0%, #F2B807 100%)',
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className={s.pokemonDefAndAttack}>
+              <dl className={s.pokemonDefAndAttackItem}>
+                <dd>
+                  <span>49</span>
+                </dd>
+                <dt>Defence</dt>
+              </dl>
+
+              <dl className={s.pokemonDefAndAttackItem}>
+                <dd>
+                  <span>165</span>
+                </dd>
+                <dt>Attack</dt>
+              </dl>
+
+              <dl className={s.pokemonDefAndAttackItem}>
+                <dd>
+                  <span>130</span>
+                </dd>
+                <dt>Sp Attack</dt>
+              </dl>
+
+              <dl className={s.pokemonDefAndAttackItem}>
+                <dd>
+                  <span>271</span>
+                </dd>
+                <dt>Sp Defence</dt>
+              </dl>
+            </div>
           </div>
         </div>
       ) : (
-        <h1>loading...</h1>
+        <Loader />
       )}
     </div>
   );
