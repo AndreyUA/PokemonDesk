@@ -5,20 +5,16 @@ import config from '../config/index';
 
 type TEndpoint = keyof typeof config.client.endpoint;
 
-interface IQuery {
-  limit: number;
-  name?: string;
-}
-
-const usePokemons = (param: TEndpoint, query: IQuery, setSearchValue: Array<string>) => {
-  const [data, setData] = useState<any>([]);
+const useData = <T>(endpoint: TEndpoint, query: object, deps: Array<any> = []) => {
+  const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsloading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
 
   useEffect(() => {
-    const getPokemons = async () => {
+    const getData = async (): Promise<void> => {
+      setIsloading(true);
       try {
-        const response = await req(param);
+        const response = await req<T>(endpoint, query);
         setData(response);
       } catch (error) {
         setIsError(true);
@@ -27,8 +23,9 @@ const usePokemons = (param: TEndpoint, query: IQuery, setSearchValue: Array<stri
       }
     };
 
-    getPokemons();
-  }, [param]);
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps);
 
   return {
     isLoading,
@@ -37,4 +34,4 @@ const usePokemons = (param: TEndpoint, query: IQuery, setSearchValue: Array<stri
   };
 };
 
-export default usePokemons;
+export default useData;
