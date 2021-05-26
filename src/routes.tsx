@@ -1,14 +1,15 @@
 /* eslint-disable no-shadow */
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import Home from './pages/Home/index.tsx';
 import Pokedex from './pages/Pokedex/index.tsx';
 import Empty from './pages/Empty/index.tsx';
+import Pokemon, { IProps } from './pages/Pokemon/index.tsx';
 
 interface IGeneralMenu {
   title: string;
   link: LinkEnum;
-  component: () => JSX.Element;
+  component: (props: PropsWithChildren<any>) => JSX.Element;
 }
 
 export enum LinkEnum {
@@ -16,6 +17,7 @@ export enum LinkEnum {
   POKEDEX = '/pokedex',
   LEGENDARIES = '/legendaries',
   DOCUMENTATION = '/documentation',
+  POKEMON = '/pokedex/:id',
 }
 
 export const GENERAL_MENU: Array<IGeneralMenu> = [
@@ -41,11 +43,19 @@ export const GENERAL_MENU: Array<IGeneralMenu> = [
   },
 ];
 
+export const SECOND_ROUTES: Array<IGeneralMenu> = [
+  {
+    title: 'Pokemon',
+    link: LinkEnum.POKEMON,
+    component: ({ id }: IProps) => <Pokemon id={id} />,
+  },
+];
+
 interface IAccMenu {
-  [n: string]: () => JSX.Element;
+  [n: string]: (props: PropsWithChildren<any>) => JSX.Element;
 }
 
-const routes = GENERAL_MENU.reduce((acc: IAccMenu, item: IGeneralMenu) => {
+const routes = [...GENERAL_MENU, ...SECOND_ROUTES].reduce((acc: IAccMenu, item: IGeneralMenu) => {
   acc[item.link] = item.component;
 
   return acc;
