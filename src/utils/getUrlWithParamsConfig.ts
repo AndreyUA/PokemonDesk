@@ -2,14 +2,27 @@ import config from '../config/index';
 
 type TEndpoint = keyof typeof config.client.endpoint;
 
-const getUrlWithParamsConfig = (endpointConfig: TEndpoint, query: object) => {
+const getUrlWithParamsConfig = (endpointConfig: TEndpoint, query: any) => {
   const url = {
-    // search: `limit=${query.limit}&name=${query.name}`,
     ...config.client.server,
     ...config.client.endpoint[endpointConfig].uri,
-    query: {
-      ...query,
-    },
+    query: {},
+  };
+
+  const pathname = Object.keys(query).reduce((acc, val) => {
+    if (acc.indexOf(`${val}`) !== -1) {
+      const result = acc.replace(`{${val}}`, query[val]);
+      // eslint-disable-next-line no-param-reassign
+      delete query[val];
+      return result;
+    }
+
+    return acc;
+  }, url.pathname);
+
+  url.pathname = pathname;
+  url.query = {
+    ...query,
   };
 
   return url;
