@@ -17,7 +17,7 @@ export enum LinkEnum {
   POKEDEX = '/pokedex',
   LEGENDARIES = '/legendaries',
   DOCUMENTATION = '/documentation',
-  POKEMON = '/pokedex/:id',
+  POKEMON = '/pokemon/:id',
 }
 
 export const GENERAL_MENU: Array<IGeneralMenu> = [

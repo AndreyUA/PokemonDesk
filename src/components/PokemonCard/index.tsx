@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import Heading from '../Heading/index.tsx';
 
 import s from './PokemonCard.module.scss';

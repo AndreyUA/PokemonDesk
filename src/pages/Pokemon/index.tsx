@@ -1,4 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
+import { usePath } from 'hookrouter';
 
 import s from './Pokemon.module.scss';
 
@@ -33,6 +34,11 @@ const pokemonsData = {
 };
 
 const Pokemon: FC<IProps> = ({ id }) => {
+  const path = usePath();
+
+  // eslint-disable-next-line no-console
+  console.log(path);
+
   const [pokemon, setPokemon] = useState<PokemonRequest | null>(null);
 
   useEffect(() => {

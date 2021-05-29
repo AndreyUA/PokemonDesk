@@ -3,6 +3,7 @@
 interface CssExports {
   pokemonCards: string;
   pokemonInput: string;
+  polemonLink: string;
   root: string;
   wrapper: string;
 }
