@@ -5,6 +5,7 @@ import s from './Pokemon.module.scss';
 import Heading from '../../components/Heading/index.tsx';
 import Loader from '../../components/Loader/index.tsx';
 import useData from '../../hook/useData';
+import toCapitalizeFirstLetter from '../../utils/toCapitalizeFirstLetter';
 
 export interface IProps {
   id: string | number;
@@ -42,7 +43,7 @@ const Pokemon: FC<IProps> = ({ id }) => {
           <div className={s.pokemonStats}>
             <div className={s.pokemonInfo}>
               <Heading className={s.pokemonName} type="h3">
-                {`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`}
+                {toCapitalizeFirstLetter(pokemon.name)}
               </Heading>
               <div className={s.pokemonGenAndCircle}>
                 <Heading className={s.pokemonGeneration} type="h4">

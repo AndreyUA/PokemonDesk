@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import Heading from '../Heading/index.tsx';
+import toCapitalizeFirstLetter from '../../utils/toCapitalizeFirstLetter';
 
 import s from './PokemonCard.module.scss';
 
@@ -17,7 +18,7 @@ const PokemonCard: FC<IProps> = ({ name, attack, defense, types, img }) => {
     <li className={s.root}>
       <div className={s.infoWrap}>
         <Heading type="h4" className={s.titleName}>
-          {`${name[0].toUpperCase()}${name.slice(1)}`}
+          {toCapitalizeFirstLetter(name)}
         </Heading>
         <div className={s.statWrap}>
           <div className={s.statItem}>
