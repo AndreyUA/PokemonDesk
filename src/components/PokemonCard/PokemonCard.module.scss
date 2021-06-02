@@ -68,7 +68,7 @@
 .pictureWrap {
   width: 232px;
   height: 100%;
-  background: linear-gradient(270deg, #b33327 0.15%, #d93e30 100%);
+  // background: linear-gradient(270deg, #b33327 0.15%, #d93e30 100%);
   position: absolute;
   right: 0;
   display: flex;
@@ -81,7 +81,6 @@
 }
 
 .label {
-  background: #f28f16;
   box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.18);
   border-radius: 11px;
   height: 15px;

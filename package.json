@@ -6,7 +6,7 @@
   "author": "Andrey Zhygarev",
   "license": "MIT",
   "scripts": {
-    "build:dev": "env NODE_ENV=development webpack --config webpack.config.js",
+    "build:dev": "env NODE_ENV=development webpack --config webpack.config.js && node dist/server.js",
     "build:prod": "env NODE_ENV=production webpack --config webpack.config.js",
     "start": "env NODE_ENV=development webpack-dev-server",
     "test": "npx jest --watch"
