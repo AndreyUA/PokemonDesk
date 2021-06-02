@@ -1,49 +1,29 @@
 import React, { FC, useState, useEffect } from 'react';
-import { usePath } from 'hookrouter';
 
 import s from './Pokemon.module.scss';
 
-import { PokemonRequest } from '../../interface/pokemons';
 import Heading from '../../components/Heading/index.tsx';
 import Loader from '../../components/Loader/index.tsx';
+import useData from '../../hook/useData';
+import toCapitalizeFirstLetter from '../../utils/toCapitalizeFirstLetter';
 
 export interface IProps {
   id: string | number;
 }
 
-const pokemonsData = {
-  name_clean: 'bulbasaur',
-  abilities: ['overgrow', 'chlorophyll'],
-  stats: {
-    hp: 45,
-    attack: 49,
-    defense: 49,
-    'special-attack': 65,
-    'special-defense': 65,
-    speed: 45,
-  },
-  types: ['grass', 'poison'],
-  img: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
-  name: 'bulbasaur',
-  base_experience: 64,
-  height: 7,
-  id: 1,
-  is_default: true,
-  order: 1,
-  weight: 69,
-};
-
 const Pokemon: FC<IProps> = ({ id }) => {
-  const path = usePath();
-
-  // eslint-disable-next-line no-console
-  console.log(path);
-
-  const [pokemon, setPokemon] = useState<PokemonRequest | null>(null);
+  const { data, isLoading } = useData('getPokemon', { id });
+  const [pokemon, setPokemon] = useState<any | null>(null);
 
   useEffect(() => {
-    setPokemon(pokemonsData);
-  }, [id]);
+    setPokemon(data);
+  }, [data]);
+
+  // TODO: ADD WRAPPER
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <div className={s.root}>
       {pokemon ? (
@@ -52,7 +32,7 @@ const Pokemon: FC<IProps> = ({ id }) => {
             <img className={s.pokemonPic} src={pokemon.img} alt="pokemon" />
             <div className={s.pokemonAbilities}>
               <div className={s.labelWrap}>
-                {pokemon.types.map((type) => (
+                {pokemon.types.map((type: string) => (
                   <span key={type} className={s.label}>
                     {type}
                   </span>
@@ -63,7 +43,7 @@ const Pokemon: FC<IProps> = ({ id }) => {
           <div className={s.pokemonStats}>
             <div className={s.pokemonInfo}>
               <Heading className={s.pokemonName} type="h3">
-                {`${pokemon.name[0].toUpperCase()}${pokemon.name.slice(1)}`}
+                {toCapitalizeFirstLetter(pokemon.name)}
               </Heading>
               <div className={s.pokemonGenAndCircle}>
                 <Heading className={s.pokemonGeneration} type="h4">
