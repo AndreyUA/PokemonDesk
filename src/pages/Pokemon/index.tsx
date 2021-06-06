@@ -4,6 +4,7 @@ import s from './Pokemon.module.scss';
 
 import Heading from '../../components/Heading/index.tsx';
 import Loader from '../../components/Loader/index.tsx';
+import { PokemonRequest } from '../../interface/pokemons';
 import useData from '../../hook/useData';
 import toCapitalizeFirstLetter from '../../utils/toCapitalizeFirstLetter';
 
@@ -12,8 +13,8 @@ export interface IProps {
 }
 
 const Pokemon: FC<IProps> = ({ id }) => {
-  const { data, isLoading } = useData('getPokemon', { id });
-  const [pokemon, setPokemon] = useState<any | null>(null);
+  const { data, isLoading } = useData<PokemonRequest>('getPokemon', { id });
+  const [pokemon, setPokemon] = useState<PokemonRequest | null>(null);
 
   useEffect(() => {
     setPokemon(data);
