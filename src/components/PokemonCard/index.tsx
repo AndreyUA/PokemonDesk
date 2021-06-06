@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 
 import Heading from '../Heading/index.tsx';
 import toCapitalizeFirstLetter from '../../utils/toCapitalizeFirstLetter';
+import colorHelper from '../../utils/colorHelper';
 
 import s from './PokemonCard.module.scss';
 
@@ -32,7 +33,12 @@ const PokemonCard: FC<IProps> = ({ name, attack, defense, types, img }) => {
         </div>
         <div className={s.labelWrap}>
           {types.map((type) => (
-            <span key={type} className={s.label}>
+            <span
+              key={type}
+              className={s.label}
+              style={{
+                background: `${colorHelper(type)}`,
+              }}>
               {type}
             </span>
           ))}
