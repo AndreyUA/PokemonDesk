@@ -57,7 +57,7 @@ const Pokedex = () => {
           value={searchValue}
           onChange={handleSearchChange}
         />
-        <div>{isTypesLoading ? <Loader /> : pokemonTypes?.map((item) => <p>{item}</p>)}</div>
+        <div>{isTypesLoading ? <Loader /> : pokemonTypes?.map((item) => <p key={item}>{item}</p>)}</div>
         <ul className={s.pokemonCards}>
           {isLoading ? (
             <Loader />
