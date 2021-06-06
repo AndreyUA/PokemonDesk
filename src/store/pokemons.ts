@@ -1,3 +1,23 @@
+/* eslint-disable no-console */
+import { Dispatch } from 'react';
+
+import { TTypesRequest } from '../interface/pokemons';
+import req from '../utils/request';
+
+// eslint-disable-next-line no-shadow
+export enum PokemonActionTypes {
+  FETCH_TYPES = 'FETCH_TYPES',
+  FETCH_TYPES_RESOLVE = 'FETCH_TYPES_RESOLVE',
+  FETCH_TYPES_REJECT = 'FETCH_TYPES_REJECT',
+}
+
+interface TypesAction {
+  type: PokemonActionTypes;
+  payload?: Array<string>;
+}
+
+type ActionTypes = TypesAction;
+
 const initialState = {
   types: {
     isLoading: false,
@@ -6,10 +26,10 @@ const initialState = {
   },
 };
 
-const pokemons = (state = initialState, action: any) => {
+const pokemons = (state = initialState, action: ActionTypes) => {
   const { type, payload } = action;
   switch (type) {
-    case 'FETCH_TYPES':
+    case PokemonActionTypes.FETCH_TYPES:
       return {
         ...state,
         types: {
@@ -18,7 +38,7 @@ const pokemons = (state = initialState, action: any) => {
           error: null,
         },
       };
-    case 'FETCH_TYPES_RESOLVE':
+    case PokemonActionTypes.FETCH_TYPES_RESOLVE:
       return {
         ...state,
         types: {
@@ -27,7 +47,7 @@ const pokemons = (state = initialState, action: any) => {
           error: null,
         },
       };
-    case 'FETCH_TYPES_REJECT':
+    case PokemonActionTypes.FETCH_TYPES_REJECT:
       return {
         ...state,
         types: {
@@ -39,6 +59,26 @@ const pokemons = (state = initialState, action: any) => {
     default:
       return state;
   }
+};
+
+export const getTypesAction = () => {
+  return async (dispatch: Dispatch<ActionTypes>) => {
+    dispatch({ type: PokemonActionTypes.FETCH_TYPES });
+    try {
+      const response = await req<TTypesRequest>('getPokemonTypes', {});
+      console.log(response);
+
+      dispatch({
+        type: PokemonActionTypes.FETCH_TYPES_RESOLVE,
+        payload: response,
+      });
+    } catch (error) {
+      dispatch({
+        type: PokemonActionTypes.FETCH_TYPES_REJECT,
+        payload: error,
+      });
+    }
+  };
 };
 
 export default pokemons;

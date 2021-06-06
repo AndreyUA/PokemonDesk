@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import req from '../utils/request';
 import config from '../config/index';
 
-type TEndpoint = keyof typeof config.client.endpoint;
+export type TEndpoint = keyof typeof config.client.endpoint;
 
 type TData<T> = {
   isLoading: boolean;
