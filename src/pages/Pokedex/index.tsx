@@ -1,7 +1,8 @@
+/* eslint-disable no-console */
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import { A } from 'hookrouter';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import s from './Pokedex.module.scss';
 
@@ -12,13 +13,15 @@ import Loader from '../../components/Loader/index.tsx';
 import useDebounce from '../../hook/useDebounce';
 import useData from '../../hook/useData';
 import { IPokemons, PokemonRequest } from '../../interface/pokemons';
-import { getTypesAction } from '../../store/pokemons';
+import { getPokemonsTypes, getPokemonsTypesLoading, getTypesAction } from '../../store/pokemons';
 
 interface IQuery {
   name?: string;
 }
 
 const Pokedex = () => {
+  const pokemonTypes = useSelector(getPokemonsTypes);
+  const isTypesLoading = useSelector(getPokemonsTypesLoading);
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState<string>('');
   const [query, setQuery] = useState<IQuery>({});
@@ -29,7 +32,7 @@ const Pokedex = () => {
 
   useEffect(() => {
     dispatch(getTypesAction());
-  }, []);
+  }, [dispatch]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -54,6 +57,7 @@ const Pokedex = () => {
           value={searchValue}
           onChange={handleSearchChange}
         />
+        <div>{isTypesLoading ? <Loader /> : pokemonTypes?.map((item) => <p>{item}</p>)}</div>
         <ul className={s.pokemonCards}>
           {isLoading ? (
             <Loader />
