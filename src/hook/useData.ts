@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import req from '../utils/request';
 import config from '../config/index';
+import { getPokemonsAction, getPokemonsState } from '../store/pokemons';
 
-type TEndpoint = keyof typeof config.client.endpoint;
+export type TEndpoint = keyof typeof config.client.endpoint;
 
 type TData<T> = {
   isLoading: boolean;
@@ -12,30 +13,36 @@ type TData<T> = {
 };
 
 const useData = <T>(endpoint: TEndpoint, query: object, deps: Array<any> = []): TData<T> => {
-  const [data, setData] = useState<T | null>(null);
-  const [isLoading, setIsloading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
+  // const [data, setData] = useState<T | null>(null);
+  // const [isLoading, setIsloading] = useState<boolean>(true);
+  // const [isError, setIsError] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getData = async (): Promise<void> => {
-      setIsloading(true);
-      try {
-        const response = await req<T>(endpoint, query);
-        setData(response);
-      } catch (error) {
-        setIsError(true);
-      } finally {
-        setIsloading(false);
-      }
-    };
+    dispatch(getPokemonsAction<T>(endpoint, query));
+    // const getData = async (): Promise<void> => {
+    //   setIsloading(true);
+    //   try {
+    //     const response = await req<T>(endpoint, query);
+    //     setData(response);
+    //   } catch (error) {
+    //     setIsError(true);
+    //   } finally {
+    //     setIsloading(false);
+    //   }
+    // };
 
-    getData();
+    // getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 
+  const { isLoading, data, error } = useSelector(getPokemonsState);
+
   return {
     isLoading,
-    isError,
+    isError: error,
+    // @ts-ignore
     data,
   };
 };

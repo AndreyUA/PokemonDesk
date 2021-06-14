@@ -26,3 +26,5 @@ const pokemonsData = {
   order: 1,
   weight: 69,
 };
+
+export type TTypesRequest = Array<string>;
